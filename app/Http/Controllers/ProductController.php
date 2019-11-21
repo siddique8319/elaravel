@@ -26,8 +26,8 @@ class ProductController extends Controller
             ->get();
 
       return view('admin.all_product',compact('all_product_info'));
-        $manage_product = view('admin.all_product')
-            ->with('all_product_info', $all_product_info);
+//        $manage_product = view('admin.all_product')
+//            ->with('all_product_info', $all_product_info);
 
         return view('admin_layout')
             ->with('admin.all_product', $manage_product);
