@@ -28,7 +28,7 @@ Route::get('/','HomeController@index');
 Route::get('/logout','SuperAdminController@logout');
 Route::get('/admin','AdminController@index');
 
-Route::get('/dashboard','AdminController@show_dashboard');
+Route::get('/dashboard','SuperAdminController@index');
 
 Route::post('/admin-dashboard','AdminController@dashboard');
 
@@ -77,6 +77,9 @@ Route::get('/unactive_product/{product_id}','ProductController@unactive_product'
 Route::get('/active_product/{product_id}','ProductController@active_product');
 
 Route::get('/delete_product/{product_id}','ProductController@delete_product');
-Route::get('/delete_image/{product_id}','ProductController@delete_image');
+
+Route::get('/edit_product/{product_id}','ProductController@edit_product');
+
+Route::post('/update_product/{product_id}','ProductController@update_product');
 
 

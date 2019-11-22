@@ -111,4 +111,32 @@ class ProductController extends Controller
     }
 
 
+
+    public function edit_product($product_id)
+    {
+        $product_info = DB::table('tbl_product')
+            ->where('product_id', $product_id)
+            ->first();
+        $manage_product = view('admin.edit_product')
+            ->with('category_info', $product_info);
+
+        return view('admin_layout')
+            ->with('admin.edit_product', $manage_product);
+
+    }
+
+
+    public function update_product(Request $request,$product_id)
+    {
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['category_description'] = $request->category_description;
+        DB::table('tbl_category')
+            ->where('product_id',$product_id)
+            ->update($data);
+        Session::put('msg', 'Product Updated Successfully !! ');
+        return Redirect::to('/all-product');
+
+
+    }
 }
