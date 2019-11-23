@@ -5,7 +5,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','HomeController@index');
+//Route::get('/','HomeController@index');
 
 
 
@@ -79,6 +79,7 @@ Route::get('/active_product/{product_id}','ProductController@active_product');
 Route::get('/delete_product/{product_id}','ProductController@delete_product');
 
 Route::get('/edit_product/{product_id}','ProductController@edit_product');
+Route::get('/','ProductController@index1');
 
 Route::post('/update_product/{product_id}','ProductController@update_product');
 
