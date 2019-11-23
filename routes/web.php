@@ -5,7 +5,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/','HomeController@index');
+Route::get('/','HomeController@index');
 
 
 
@@ -82,5 +82,25 @@ Route::get('/edit_product/{product_id}','ProductController@edit_product');
 Route::get('/','ProductController@index1');
 
 Route::post('/update_product/{product_id}','ProductController@update_product');
+
+
+
+
+
+
+//slider route
+
+Route::get('/add-slider','SliderController@index');
+Route::post('/save-slider','SliderController@save_slider');
+
+Route::get('/all-slider','SliderController@all_slider');
+
+Route::get('/unactive_slider/{slider_id}','SliderController@unactive_slider');
+
+Route::get('/active_slider/{slider_id}','SliderController@active_slider');
+Route::get('/delete_slider/{slider_id}','SliderController@delete_slider');
+
+
+
 
 

@@ -154,10 +154,42 @@
             <div class="col-sm-12">
                 <div id="slider-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider-carousel" data-slide-to="1"></li>
-                        <li data-target="#slider-carousel" data-slide-to="2"></li>
+                        @foreach($all_slider1 as $item)
+                            <li data-target="#myCarousel" data-slide-to="{{ $loop->index }}"
+                                class="{{ $loop->first ? ' active' : '' }}"></li>
+                        @endforeach
+{{--                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>--}}
+{{--                        <li data-target="#slider-carousel" data-slide-to="1"></li>--}}
+{{--                        <li data-target="#slider-carousel" data-slide-to="2"></li>--}}
                     </ol>
+
+                    @php
+                        $slider = DB::table('tbl_slider')->latest()->where('publication_status',1)
+                        ->get();
+                    @endphp
+
+<!--                    --><?php
+//                    $all_published_slider=DB::table('tbl_slider')
+//                        ->where('publication_status', 1)
+//                        ->get();
+//
+//                    foreach($all_published_slider as $v_slider){?>
+
+                    @foreach($slider as $item)
+                        <div class="item {{ $loop->first ? ' active' : '' }}">
+                            <a href="{{ url("YOUR_URL")  }}">
+                                <img src="{{ url($item->image) }}" alt="{{ $item->title }}"
+                                     style="margin: auto;">
+                            </a>
+                            <div class="carousel-caption"
+                                 style="padding-top: 40px; position: static!important;">
+                                <h1>
+                                    <a href="{{ url("YOUR_URL")}}"> {{ $item->title }}</a>
+                                </h1>
+                            </div>
+                        </div>
+                    @endforeach
+
 
                     <div class="carousel-inner">
                         <div class="item active">
@@ -169,42 +201,14 @@
                                 <button type="button" class="btn btn-default get">Get it now</button>
                             </div>
                             <div class="col-sm-6">
-                                <img src="{{asset('/')}}/frontend/images/home/girl1.jpg" class="girl img-responsive"
-                                     alt=""/>
-                                <img src="{{asset('/')}}/frontend/images/home/pricing.png" class="pricing" alt=""/>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>100% Responsive Design</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="{{asset('/')}}/frontend/images/home/girl2.jpg" class="girl img-responsive"
-                                     alt=""/>
-                                <img src="{{asset('/')}}/frontend/images/home/pricing.png" class="pricing" alt=""/>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-sm-6">
-                                <h1><span>E</span>-SHOPPER</h1>
-                                <h2>Free Ecommerce Template</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. </p>
-                                <button type="button" class="btn btn-default get">Get it now</button>
-                            </div>
-                            <div class="col-sm-6">
-                                <img src="{{asset('/')}}/frontend/images/home/girl3.jpg" class="girl img-responsive"
+                                <img src="{{url($v_slider->slider_image)}}" class="girl img-responsive"
                                      alt=""/>
                                 <img src="{{asset('/')}}/frontend/images/home/pricing.png" class="pricing" alt=""/>
                             </div>
                         </div>
 
                     </div>
+
 
                     <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
                         <i class="fa fa-angle-left"></i>
@@ -228,7 +232,7 @@
                     <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                         <div class="panel panel-default">
                             <?php
-                            $all_published_category = DB::table('tbl_category')
+                            $all_published_category=DB::table('tbl_category')
                                 ->where('publication_status', 1)
                                 ->get();
 
@@ -287,6 +291,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <footer id="footer"><!--Footer-->

@@ -26,7 +26,7 @@ class CategoryController extends Controller
         $this->AdminAuthCheck();
         $all_category_info = DB::table('tbl_category')->get();
         $manage_category = view('admin.all_category')
-            ->with('all_category_info', $all_category_info);
+            ->with('all_category_info1', $all_category_info);
 
         return view('admin_layout')
             ->with('admin.all_category', $manage_category);
